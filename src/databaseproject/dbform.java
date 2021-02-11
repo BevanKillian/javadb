@@ -6,7 +6,9 @@
 package databaseproject;
 
 import java.sql.*;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class dbform extends javax.swing.JFrame {
 
@@ -14,7 +16,6 @@ public class dbform extends javax.swing.JFrame {
     Statement stmt;
     ResultSet rs;
     int currentRow = 0;
-    
 
     /**
      * Creates new form dbform
@@ -51,6 +52,12 @@ public class dbform extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        txtFamilyFind = new javax.swing.JTextField();
+        cmbJobTitle = new javax.swing.JComboBox<>();
+        btnFind = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +162,11 @@ public class dbform extends javax.swing.JFrame {
         });
 
         btnDelete.setText("Delete Record");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,6 +201,63 @@ public class dbform extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtFamilyFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFamilyFindActionPerformed(evt);
+            }
+        });
+
+        cmbJobTitle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT Manager", "Programmer", "Head of HR", "Master Turner" }));
+
+        btnFind.setText("Find");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Family Name :");
+
+        jLabel3.setText("Job Title :");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFamilyFind, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbJobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFamilyFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbJobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,7 +277,8 @@ public class dbform extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtFamily, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtJob)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,7 +297,9 @@ public class dbform extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -296,16 +368,16 @@ public class dbform extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
 
         doButtonsCancel();
-        
+
         try {
-            
+
             rs.absolute(currentRow);
             txtID.setText(rs.getString("ID"));
             txtFirst.setText(rs.getString("FirstName"));
             txtFamily.setText(rs.getString("Family"));
             txtJob.setText(rs.getString("Job"));
-            
-        } catch (SQLException e) {            
+            txtID.setEditable(false);
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
@@ -314,20 +386,17 @@ public class dbform extends javax.swing.JFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
 
         doButtonsNew();
-        
-        
+
         try {
             currentRow = rs.getRow();
-            
+            txtID.setEditable(true);
             txtID.setText("");
             txtFirst.setText("");
             txtFamily.setText("");
             txtJob.setText("");
-            
-            
-            
+
         } catch (SQLException e) {
-            
+
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
@@ -345,10 +414,9 @@ public class dbform extends javax.swing.JFrame {
             rs.updateString("FirstName", first);
             rs.updateString("Family", family);
             rs.updateString("Job", job);
-            
+
             rs.updateRow();
             JOptionPane.showMessageDialog(this, "Updated.");
-            
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -358,18 +426,132 @@ public class dbform extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       
+
+        boolean emptyTextBox = isTextBoxEmpty();
+
+        if (emptyTextBox) {
+            JOptionPane.showMessageDialog(this, "Empty text box. ");
+            return;
+        }
+
+        boolean canSave = true;
+        int tempID = Integer.parseInt(txtID.getText());
+
         try {
-             currentRow = rs.getRow();
-             
-             
-             
-             
-            
+
+            rs.beforeFirst();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+
+                if (id == tempID) {
+                    canSave = false;
+                    break;
+                }
+
+            }
+
+            if (canSave) {
+
+                saveRecord();
+
+                txtID.setEditable(false);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Primary key duplicate.");
+            }
+
         } catch (SQLException e) {
-             JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        int del = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete?", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (del == JOptionPane.YES_OPTION) {
+            try {
+                rs.deleteRow();
+
+                stmt.close();
+                rs.close();
+
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                String sql = "SELECT * FROM APP.TBLEMPLOYEES";
+                rs = stmt.executeQuery(sql);
+                rs.next();
+
+                displayRecords();
+
+                JOptionPane.showMessageDialog(this, "Record Deleted.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Operation Cancelled.");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+       
+        
+        try {
+            
+            String findFamily = txtFamilyFind.getText();
+            String findJobTitle = (String)cmbJobTitle.getSelectedItem();
+            
+            boolean recordFound = false;
+            
+            rs.beforeFirst();
+           
+            while (rs.next()){
+                
+                if (rs.getString("Family").equals(findFamily)) {
+                    
+                    if (rs.getString("Job").equals(findJobTitle)) {
+                       
+                        recordFound = true;
+                        rs.absolute(rs.getRow());                      
+                              
+                        break;
+                    }
+                } 
+                
+                }
+                             
+                if (recordFound == true) {
+                   JOptionPane.showMessageDialog(this, "Result Found.");
+                    JFrame formFind = new JFrame();
+                    
+                    formFind.setBounds(500,250, 450, 250);
+                    formFind.getContentPane().setLayout(null);
+                    
+                    JTextField textFieldFirst = new JTextField();
+                    textFieldFirst.setBounds(81, 18, 120, 30);
+                    textFieldFirst.setText(rs.getString("FirstName"));
+                    
+                    JTextField textFieldFamily = new JTextField();
+                    textFieldFamily.setBounds(81, 68, 120, 30);
+                    textFieldFamily.setText(rs.getString("Family"));
+                    
+                    formFind.getContentPane().add(textFieldFirst);
+                    formFind.getContentPane().add(textFieldFamily);
+                    
+                    formFind.setVisible(true);
+                } else {
+                     JOptionPane.showMessageDialog(this, "No Results Found.");
+                    
+                }
+            
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void txtFamilyFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFamilyFindActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFamilyFindActionPerformed
 
     private void doButtonsCancel() {
 
@@ -398,6 +580,68 @@ public class dbform extends javax.swing.JFrame {
 
         btnCancel.setEnabled(true);
         btnSave.setEnabled(true);
+    }
+
+    private boolean isTextBoxEmpty() {
+
+        String first = txtFirst.getText();
+        String family = txtFamily.getText();
+        String job = txtJob.getText();
+        String id = txtID.getText();
+
+        boolean emptyTextBox = false;
+
+        if (first.trim().isEmpty()) {
+            emptyTextBox = true;
+        }
+
+        if (family.trim().isEmpty()) {
+            emptyTextBox = true;
+        }
+
+        if (job.trim().isEmpty()) {
+            emptyTextBox = true;
+        }
+
+        if (id.trim().isEmpty()) {
+            emptyTextBox = true;
+        }
+
+        return emptyTextBox;
+    }
+
+    private void saveRecord() {
+
+        String first = txtFirst.getText();
+        String family = txtFamily.getText();
+        String job = txtJob.getText();
+        String id = txtID.getText();
+
+        try {
+
+            rs.moveToInsertRow();
+
+            rs.updateInt("ID", Integer.parseInt(id));
+            rs.updateString("FIRSTNAME", first);
+            rs.updateString("FAMILY", family);
+            rs.updateString("JOB", job);
+
+            rs.insertRow();
+
+            stmt.close();
+            rs.close();
+
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "SELECT * FROM APP.TBLEMPLOYEES";
+            rs = stmt.executeQuery(sql);
+            rs.next();
+
+            displayRecords();
+            doButtonsCancel();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     /**
@@ -459,6 +703,7 @@ public class dbform extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFind;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNew;
@@ -466,10 +711,15 @@ public class dbform extends javax.swing.JFrame {
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbJobTitle;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtFamily;
+    private javax.swing.JTextField txtFamilyFind;
     private javax.swing.JTextField txtFirst;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJob;
